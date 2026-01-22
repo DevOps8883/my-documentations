@@ -1,13 +1,13 @@
 # How to install ansible on control node
-$ sudo apt update  ----> on control node
-$ sudo apt install software-properties-common     ----> on control node
-$ sudo add-apt-repository --yes --update ppa:ansible/ansible     ----> on control node
-$ sudo apt install ansible    ----> on control node
-ansible --version           ----> on control node
-python3 --version ----> on managed nodes bcos it is required by ansible
-ansible localhost -m ping   ----> on control node. To confirm ansible is installed and working
-mkdir -p ~/ansible       ----> on control node. To create a repo for inventory
-vi ~/ansible/hosts       ----> on control node. To add all the managed hosts/nodes IP addressess and hostnames
+# sudo apt update  ----> on control node
+# sudo apt install software-properties-common     ----> on control node
+# sudo add-apt-repository --yes --update ppa:ansible/ansible     ----> on control node
+# sudo apt install ansible    ----> on control node
+# ansible --version           ----> on control node
+# python3 --version ----> on managed nodes bcos it is required by ansible
+# ansible localhost -m ping   ----> on control node. To confirm ansible is installed and working
+# mkdir -p ~/ansible       ----> on control node. To create a repo for inventory
+# vi ~/ansible/hosts       ----> on control node. To add all the managed hosts/nodes IP addressess and hostnames
 # Edit the details below to the details of your managed servers private IPs and key-pair name
 [web]
 node-2 ansible_host=172.31.1.100
@@ -17,4 +17,33 @@ node-3 ansible_host=172.31.1.101
 ansible_user=ubuntu
 ansible_ssh_private_key_file=~/dav.pem
 
-ansible -i ~/ansible/hosts all -m ping     ----> on control node to check ansible connectivity with the managed nodes
+# ansible -i ~/ansible/hosts all -m ping     ----> on control node to check ansible connectivity with the managed nodes
+# ansible all --list-hosts  --> on the control node == No hosts
+# cd ansible
+# vi ansible.cfg
+
+[defaults]
+inventory = ./inventory
+remote_user = devopsuser  --- comment out this user to make ansibe run as root user
+ask_pass = false
+[privilege_escalation]
+become = true
+become_method = sudo
+become_user = root
+become_ask_pass = false
+
+# vi inventory
+# Add all the hostnames of the managed nodes and private IPs
+
+server1 172.3.65.87
+server2 172.3.65.87
+server3 172.3.65.87
+
+# ansible all -m ping 
+
+# ansible-inventory -i inventory --list       [To list all the hosts in the inventory]
+
+
+
+
+
