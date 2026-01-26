@@ -2,8 +2,10 @@
 Create all the instances on ec2
 Ensure the security group has port 22 open for ssh connection
 Lauunch Git Bash on your laptop
+change directory to the path of the key-pair file [cd Downloads]
 scp -i ~/Downloads/dav.pem ~/Downloads/dav.pem ubuntu@<MANAGER_PUBLIC_IP>:/home/ubuntu/ ---- Ensure the key-pair is in /Downloads, edit the Manager Pub IP for the instance marked as Manager/control 
 ssh -i ~/Downloads/dav.pem ubuntu@<MANAGER_PUBLIC_IP> --- ssh into the manager/control instance
+chmod 700 ~/.ssh
 chmod 400 ~/dav.pem --- fix permission on the manager instance
 ssh -i ~/dav.pem ubuntu@<NODE_PRIVATE_IP> ----- Use this to ssh into other instance but use the private IP
 
