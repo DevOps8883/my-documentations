@@ -125,11 +125,12 @@
 
 
 """" DO NOT COPY THIS PORTION BUT USE IT TO CREATE TEMPLATE FILES"""""""""
-# mkdir -p ~/ansible/templates
-# vi ~/ansible/templates/host-manager-context.xml.j2
-# vi ~/ansible/templates/manager-context.xml.j2
+mkdir -p ~/ansible/templates && vi ~/ansible/templates/manager-context.xml.j2
+vi ~/ansible/templates/host-manager-context.xml.j2
+
 
 """PASTE THIS INTO host-manager-context.xml.j2  and   manager-context.xml.j2 to reference the template tasks in the playbook """
 <Context antiResourceLocking="false" privileged="true">
 </Context>
+
 
